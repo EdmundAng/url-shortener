@@ -6,7 +6,7 @@ const PORT = 3000;
 // see cors error in error.txt
 import cors from "cors";
 // Allow only a specific origin
-app.use(cors({ origin: "http://localhost:5000" }));
+app.use(cors({ origin: ["http://localhost:5000", "http://localhost:5173"] }));
 
 app.use(express.json()); // This middleware is used to parse JSON bodies.
 

@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", "Times New Roman", Times, serif;
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  margin: 2% 5%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(128, 128, 128, 0.8);
+  border-radius: 12px;
+  box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.6);
+}
+
+.header {
+  background: cornflowerblue;
+  color: black;
+  padding: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#mainHeader {
+  border-radius: 12px 12px 0 0;
+}
+
+.input-area {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+}
+
+#longURLInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid white;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+}
+
+#longURLInput:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.5);
+}
+
+button {
+  border: 1px solid white;
+  border-radius: 6px;
+  background: gold;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #3f37c9;
+}
+
+button:active {
+  transform: scaleX(0.5);
+}
+
+#shortenBtn {
+  padding: 8px 8px;
+}
+
+.output {
+  padding: 16px;
+  animation-name: outputFlashFade;
+  animation-duration: 1.5s;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+@keyframes outputFlashFade {
+  0% {
+    background: rgba(150, 35, 200, 0);
+  }
+  30% {
+    background: rgba(150, 35, 200, 1);
+  }
+  100% {
+    background: rgba(150, 35, 200, 0);
+  }
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* This group is to render overlapping elements*/
+/* requires one parent container, and the children */
+.invisible-container {
+  position: relative; /* Establishes a positioning context for children */
+  /* This parent container needs a defined absolute height/width if children are absolute */
+  width: 100%;
+  height: 50.67px; /* Height purposely set to match original output element's height */
+}
+/* in this case real and shadow are identical */
+#outputShadow,
+#outputReal {
+  position: absolute; /* Removes element from normal document flow */
+  width: 100%;
+  height: 100%;
+}
+#outputReal {
+  z-index: 1; /* Lower z-index means it's underneath */
+}
+#outputShadow {
+  z-index: 2; /* Higher z-index means it's on top (rendered after previous) */
+}
+/* ---------------------------------------------------------------------------------------- */
+
+#copyUrlBtn {
+  border-radius: 2px;
+  width: 2em;
+  height: 2em;
+  background-image: url("./assets/link_icon_153723.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#copyUrlBtn:active {
+  transform: scale(0.8);
+}
+
+#historyHeader {
+  text-align: left;
+}

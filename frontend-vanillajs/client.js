@@ -18,13 +18,11 @@ invalidURLFeedback.classList.add("output");
 invalidURLFeedback.textContent = "Invalid URL Provided!";
 
 const apiEndpoint = "http://localhost:3000/petite-url/";
-let longURL = {};
-let shortURL = "https://petiteurl.com/abc123"; //placeholder, get actual from response
-let data = {};
+let shortURL = "";
 
 // FUNCTIONS
 async function outputShortURL() {
-  longURL = { long_url: longURLInput.value.trim() };
+  const longURL = { long_url: longURLInput.value.trim() };
 
   // Make HTTP Request to server
   try {
@@ -40,7 +38,7 @@ async function outputShortURL() {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    data = await response.json();
+    const data = await response.json();
     console.log("Success:", data);
 
     shortURL = "http://localhost:3000/petite-url/" + data.shortCode;
@@ -50,19 +48,13 @@ async function outputShortURL() {
     outputDiv.textContent = "Short URL:";
 
     // Short URL Link
-    const urlLinkSpan = document.createElement("span");
     const shortLink = document.createElement("a");
     shortLink.textContent = shortURL;
     shortLink.href = shortURL;
     shortLink.target = "_blank";
-    urlLinkSpan.append(shortLink);
 
-    // Copy Short URL Link Button
-    const copyUrlBtnSpan = document.createElement("span");
-    copyUrlBtnSpan.append(copyUrlBtn);
-
-    outputDiv.append(urlLinkSpan);
-    outputDiv.append(copyUrlBtnSpan);
+    outputDiv.append(shortLink);
+    outputDiv.append(copyUrlBtn);
 
     outputArea.innerHTML = "";
     outputArea.append(outputDiv);
